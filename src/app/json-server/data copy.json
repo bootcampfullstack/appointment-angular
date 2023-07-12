@@ -1,0 +1,16 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Maria Lucia",
+      "phone": "15 99705-3212",
+      "dateOfBirth": "10/06/2000"
+    },
+    {
+      "id": 2,
+      "name": "Pedro Lucas Silva",
+      "phone": "15 99721-5454",
+      "dateOfBirth": "12/02/2001"
+    }
+  ]
+}
