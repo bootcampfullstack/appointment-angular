@@ -43,7 +43,7 @@ export class ClientsTablePageComponent implements OnInit {
   delete(client: Client){
     this.clientService.delete(client).subscribe({
       next: () => {
-        this.clients = this.clients.filter(c => c.id !== client.id)
+       this.loadClients();
       },
       error: () => {
         alert("Erro ao remover o client");
