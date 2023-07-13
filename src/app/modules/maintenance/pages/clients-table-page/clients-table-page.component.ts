@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/core/models/client';
 import { Page } from 'src/app/core/models/page';
 import { ClientService } from 'src/app/core/services/client.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-clients-table-page',
@@ -10,7 +11,7 @@ import { ClientService } from 'src/app/core/services/client.service';
 })
 export class ClientsTablePageComponent implements OnInit {
 
-  constructor(private clientService: ClientService){}
+  constructor(private clientService: ClientService, private toastService: ToastService){}
 
   clientPage: Page<Client> = {} as Page<Client>;
   page = 1;
@@ -43,13 +44,15 @@ export class ClientsTablePageComponent implements OnInit {
   delete(client: Client){
     this.clientService.delete(client).subscribe({
       next: () => {
+       this.toastService.show("Cliente removido com sucesso!",{classname: "bg-success text-light"});
        this.loadClients();
       },
       error: () => {
-        alert("Erro ao remover o client");
+        this.toastService.show("Erro ao remover o cliente!",{classname: "bg-danger text-light"});
       }
   });
   }
 
 
 }
+
