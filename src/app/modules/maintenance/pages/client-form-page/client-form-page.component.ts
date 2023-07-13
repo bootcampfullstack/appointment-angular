@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ClientService } from 'src/app/core/services/client.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-client-form-page',
@@ -15,7 +16,12 @@ export class ClientFormPageComponent implements OnInit{
   clientForm: FormGroup;
   isEditing: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private location: Location, private router: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder,
+              private clientService: ClientService,
+              private location: Location,
+              private router: ActivatedRoute,
+              private toastService: ToastService
+              ) {
     this.clientForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
@@ -48,9 +54,10 @@ export class ClientFormPageComponent implements OnInit{
         this.clientService.update(this.clientForm.value).subscribe(
           {
             next: () => {
+              this.toastService.show("Cliente atualizado com sucesso!",{classname: "bg-success text-light"});
               this.location.back();
             },
-            error: () => alert("Erro ao salvar o cliente")
+            error: () => this.toastService.show("Erro ao salvar o cliente!",{classname: "bg-danger text-light"})
           }
         );
       }
@@ -58,9 +65,10 @@ export class ClientFormPageComponent implements OnInit{
         this.clientService.save(this.clientForm.value).subscribe(
           {
             next: () => {
+              this.toastService.show("Cliente salvo com sucesso!",{classname: "bg-success text-light"});
               this.location.back();
             },
-            error: () => alert("Erro ao salvar o cliente")
+            error: () => this.toastService.show("Erro ao criar o cliente!",{classname: "bg-danger text-light"})
           }
         );
       }
