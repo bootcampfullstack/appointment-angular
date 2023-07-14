@@ -11,6 +11,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { ClientsTablePageComponent } from './pages/clients-table-page/clients-table-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientFormPageComponent } from './pages/client-form-page/client-form-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -28,7 +29,8 @@ import { ClientFormPageComponent } from './pages/client-form-page/client-form-pa
     MaintenanceRoutingModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class MaintenanceModule { }
