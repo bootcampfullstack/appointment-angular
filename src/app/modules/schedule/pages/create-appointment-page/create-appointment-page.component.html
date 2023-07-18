@@ -8,10 +8,18 @@
           [professionals]="professionalsByArea"
           [searchClients]="searchClients"
 
-          (selectedAreaEvent)="onSelectedArea($event)"></app-form-create-appointment>
+          (selectedAreaEvent)="onSelectedArea($event)"
+          (selectedProfessionalEvent)="onSelectedProfessional($event)"
+
+          ></app-form-create-appointment>
       </div>
       <div class="col-6 border rounded shadow-sm p-4">
-          <div id="calendar"></div>
+          <app-calendar
+              [calendarMonth]="calendarMonth"
+              [availableDays]="availableDays"
+              (changedMonthEvent)="onChangedMonth($event)"
+              (selectedDateEvent)="onSelectedDate($event)"
+          ></app-calendar>
           <div id="time"></div>
       </div>
     </div>
