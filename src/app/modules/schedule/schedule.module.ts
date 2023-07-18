@@ -12,6 +12,8 @@ import { ProfessionalWorkdaysPageComponent } from './pages/professional-workdays
 import { FormCreateAppointmentComponent } from './components/form-create-appointment/form-create-appointment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { TimeComponent } from './components/time/time.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -22,13 +24,15 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     ClientHistoryPageComponent,
     ProfessionalWorkdaysPageComponent,
     FormCreateAppointmentComponent,
-    CalendarComponent
+    CalendarComponent,
+    TimeComponent
   ],
   imports: [
     CommonModule,
     ScheduleRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
   providers: [
     JsonPipe

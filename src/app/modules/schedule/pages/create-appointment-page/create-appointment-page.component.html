@@ -20,7 +20,12 @@
               (changedMonthEvent)="onChangedMonth($event)"
               (selectedDateEvent)="onSelectedDate($event)"
           ></app-calendar>
-          <div id="time"></div>
+         <app-time
+            [times]="availableTimes"
+            (selectedTimeEvent)="onSelectedTime($event)"
+         >
+
+         </app-time>
       </div>
     </div>
     <div class="d-grid gap-2 mt-2 px-5">
