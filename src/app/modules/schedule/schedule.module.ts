@@ -11,6 +11,7 @@ import { ClientHistoryPageComponent } from './pages/client-history-page/client-h
 import { ProfessionalWorkdaysPageComponent } from './pages/professional-workdays-page/professional-workdays-page.component';
 import { FormCreateAppointmentComponent } from './components/form-create-appointment/form-create-appointment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CancelAppointmentPageComponent,
     ClientHistoryPageComponent,
     ProfessionalWorkdaysPageComponent,
-    FormCreateAppointmentComponent
+    FormCreateAppointmentComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,

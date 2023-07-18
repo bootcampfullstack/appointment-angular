@@ -9,6 +9,7 @@ import { Professional } from 'src/app/core/models/professional';
 import { AppointmentTypeService } from 'src/app/core/services/appointment-type.service';
 import { AreaService } from 'src/app/core/services/area.service';
 import { ClientService } from 'src/app/core/services/client.service';
+import { ProfessionalService } from 'src/app/core/services/professional.service';
 
 @Component({
   selector: 'app-create-appointment-page',
@@ -20,6 +21,11 @@ export class CreateAppointmentPageComponent implements OnInit {
   areas: Area[] = [];
   appointmentTypes: AppointmentType[] = [];
   professionalsByArea: Professional[] = [];
+  selectedProfessional: Professional = {} as Professional;
+
+  //Calendar Component
+  calendarMonth: Date = new Date();
+  availableDays: number[] = [];
 
   @ViewChild(FormCreateAppointmentComponent)
   private formCreateAppointmentComponent !: FormCreateAppointmentComponent;
@@ -27,6 +33,7 @@ export class CreateAppointmentPageComponent implements OnInit {
   constructor( private areaService: AreaService,
                private appointmentTypeService: AppointmentTypeService,
                private clientService: ClientService,
+               private professionalService: ProfessionalService,
                private jsonPipe: JsonPipe
                ) { }
 
@@ -34,6 +41,27 @@ export class CreateAppointmentPageComponent implements OnInit {
   ngOnInit(): void {
     this.loadAreas();
     this.loadAppointmentTypes();
+  }
+
+  onSelectedProfessional(professional: Professional){
+    this.selectedProfessional = professional;
+    this.calendarMonth = new Date();
+    this.loadAvailableDays();
+  }
+
+  onSelectedDate(date: Date){
+    alert(date);
+  }
+
+  onChangedMonth(date: Date){
+    this.calendarMonth = date;
+    this.loadAvailableDays();
+  }
+
+  loadAvailableDays(){
+    this.professionalService.getAvailableDays(this.selectedProfessional, this.calendarMonth).subscribe({
+      next: days => this.availableDays = days
+    })
   }
 
   searchClients = (text: Observable<string>):Observable<Client[]> => {

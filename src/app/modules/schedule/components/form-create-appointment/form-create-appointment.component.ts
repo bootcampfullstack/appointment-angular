@@ -28,6 +28,10 @@ export class FormCreateAppointmentComponent {
   @Output()
   selectedAreaEvent = new EventEmitter<Area>();
 
+  @Output()
+  selectedProfessionalEvent = new EventEmitter<Professional>();
+
+
   submitted: boolean = false;
 
   appointmentForm: FormGroup;
@@ -50,6 +54,10 @@ export class FormCreateAppointmentComponent {
   onAreaChanged(){
     this.selectedAreaEvent.emit(this.appointmentForm.value["area"]);
     this.appointmentForm.controls["professional"].enable();
+  }
+
+  onProfessionalChanged(){
+    this.selectedProfessionalEvent.emit(this.appointmentForm.value["professional"]);
   }
 
   getSelectedClient(): Client {
