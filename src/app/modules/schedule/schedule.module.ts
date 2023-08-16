@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule, DatePipe, JsonPipe } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -35,7 +35,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ],
   providers: [
-    JsonPipe
+    JsonPipe,
+    DatePipe
   ]
 })
 export class ScheduleModule { }

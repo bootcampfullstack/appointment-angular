@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import { AppointmentType } from '../models/appointment-type';
 })
 export class AppointmentTypeService {
 
-  baseUrl = "http://localhost:3000/appointment-types";
+  baseUrl = environment.baseUrl + "/appointment-types";
 
   constructor(private http: HttpClient) { }
 
