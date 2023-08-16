@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { FormCreateAppointmentComponent } from './../../components/form-create-appointment/form-create-appointment.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs';
 import { AppointmentType } from 'src/app/core/models/appointment-type';
 import { Area } from 'src/app/core/models/area';
 import { Client } from 'src/app/core/models/client';
@@ -99,7 +99,8 @@ export class CreateAppointmentPageComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       filter(term => term.length >= 2),
-      switchMap(term => this.clientService.getClientsWithNameContaining(term))
+      switchMap(term => this.clientService.getClientsWithNameContaining(term)),
+      map( page => page.content || [])
     );
   }
 
@@ -149,8 +150,8 @@ export class CreateAppointmentPageComponent implements OnInit {
                 this.toastService.show("Agendamento criado com sucesso!",{classname: "bg-success text-light"});
                 this.clean();
             },
-            error: () => {
-              this.toastService.show("Erro ao fazer o agendamento!",{classname: "bg-danger text-light"});
+            error: (e) => {
+              this.toastService.show(e.error.message,{classname: "bg-danger text-light"});
             }
           });
         }
