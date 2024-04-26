@@ -11,7 +11,7 @@ describe('AppointmentService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+       RouterTestingModule,
        HttpClientTestingModule
       ]
     });
