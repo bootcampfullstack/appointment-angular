@@ -26,7 +26,8 @@ export class ClientFormPageComponent implements OnInit{
       id: [''],
       name: ['', Validators.required],
       phone: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
+      dateOfBirth: ['', Validators.required],
+      comments: ['']
     });
   }
 
@@ -83,6 +84,5 @@ export class ClientFormPageComponent implements OnInit{
   get cfName() {return this.clientForm.get("name")}
   get cfPhone() {return this.clientForm.get("phone")}
   get cfDateOfBirth() {return this.clientForm.get("dateOfBirth")}
-
 
 }
