@@ -1,4 +1,4 @@
-describe('home page', () => {
+describe('Home page', () => {
   
   it('should load home page', () => {
     cy.visit('http://localhost:4200');

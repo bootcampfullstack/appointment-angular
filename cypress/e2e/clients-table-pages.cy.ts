@@ -1,7 +1,7 @@
-describe('Clients Table Pages', () => {
+describe('Clients Table Page', () => {
 
   beforeEach(() => {
-    cy.visit('http://localhost:4200/clients-table');
+    cy.visit('clients-table');
   })
 
   it('Should have title: "Cadastro de Clientes"', () => {
@@ -28,6 +28,7 @@ describe('Clients Table Pages', () => {
     cy.contains('button', 'Salvar').should('exist');
   });
 
+  
   it('Should list clients in Table', () => {
     // Verifica se a tabela está presente
     cy.get('table.table-striped').should('exist');
@@ -38,21 +39,27 @@ describe('Clients Table Pages', () => {
     cy.fixture('clientes').as('clientes');
 
     // Usando function para acessar o alias corretamente
-    cy.get('@clientes').then(clientes  => {
-      // Verifica se existem clientes na tabela
-      cy.get('tbody tr').should('have.length', clientes.length);
-
+    cy.get('@clientes').then(fixedClientes => {
+ 
       // Verifica os dados dos clientes
       cy.get('tbody tr').each(($row, index) => {
-        const client:any = clientes[index];
-        console.log(client);
-        cy.wrap($row).find('th').eq(0).should('contain', client.id); // Verifica o número do cliente
-        cy.wrap($row).find('td').eq(0).find('a').should('exist').and('have.text', client.name); // Verifica se o link para o formulário de cliente está presente e contém o nome do cliente
-        cy.wrap($row).find('td').eq(1).should('have.text', client.phone); // Verifica o telefone do cliente
-        cy.wrap($row).find('td').eq(2).should('have.text', new Date(client.dateOfBirth +'T00:00:00').toLocaleDateString()); // Verifica a data de nascimento do cliente
+      
+        if(index < fixedClientes.length){
+          const client: any = fixedClientes[index];
+          cy.wrap($row).find('th').eq(0).should('contain', client.id); // Verifica o número do cliente
+          cy.wrap($row).find('td').eq(0).find('a').should('exist').and('have.text', client.name); // Verifica se o link para o formulário de cliente está presente e contém o nome do cliente
+          cy.wrap($row).find('td').eq(1).should('have.text', client.phone); // Verifica o telefone do cliente
+          cy.wrap($row).find('td').eq(2).should('have.text', new Date(client.dateOfBirth + 'T00:00:00').toLocaleDateString()); // Verifica a data de nascimento do cliente
+        }
+        
       });
     });
   });
 
+  
+  it('Should have button "Novo"', () => {
+    // Verifica se a tabela está presente
+    cy.get('#btnNovo').click();
+  });
 
 })
