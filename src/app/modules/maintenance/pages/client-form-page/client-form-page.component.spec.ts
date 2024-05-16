@@ -1,31 +1,42 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ClientFormPageComponent } from './client-form-page.component';
-
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { ToastComponent } from './shared/components/toast/toast.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { Title } from '@angular/platform-browser';
 
-
-describe('ClientFormPageComponent', () => {
-  let component: ClientFormPageComponent;
-  let fixture: ComponentFixture<ClientFormPageComponent>;
+describe('AppComponent', () => {
+  let mockTitleService: jasmine.SpyObj<Title>;
 
   beforeEach(() => {
+    mockTitleService = jasmine.createSpyObj<Title>('Title', ['setTitle']);
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        ReactiveFormsModule
-      ],
-      declarations: [ClientFormPageComponent]
-    });
-    fixture = TestBed.createComponent(ClientFormPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    imports: [RouterTestingModule],
+    declarations: [AppComponent, ToastComponent, HeaderComponent],
+    providers: [
+      { provide: Title, useValue: mockTitleService }
+    ]
+     })
+    }
+  );
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it(`should have as title 'Agendamento'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('Agendamento');
   });
+
+  it('should call titleService.setTitle with app.title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    expect(mockTitleService.setTitle).toHaveBeenCalledWith(app.title);
+  });
+
 });
