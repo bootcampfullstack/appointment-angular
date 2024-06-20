@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3,
+    "name": "Ana Maria",
+    "phone": "15 992231122",
+    "dateOfBirth": "02/08/2000",
+    "comments": "Parcelar em até 4x"
+  },
+  {
+    "id": 4,
+    "name": "Pedro Silva",
+    "phone": "15 923233212",
+    "dateOfBirth": "22/01/1998",
+    "comments": "Indicação"
+  },
+  {
+    "id": 5,
+    "name": "Marco Nunes",
+    "phone": "11 902324322",
+    "dateOfBirth": "22/01/1998",
+    "comments": ""
+  }
+]
