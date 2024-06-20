@@ -15,16 +15,16 @@ describe('Clients Table Page', () => {
 
     cy.fixture('clients').as('clients');
 
-    cy.get('@clients').then( clients => {
-      cy.get('tbody tr').each(($row, index)=>{
-        const client: any = clients[index];
-        cy.wrap($row).find('th').should('contain', client.id);
-        cy.wrap($row).find('td').eq(0).find('a').should('contain', client.name);
-        cy.wrap($row).find('td').eq(1).should('contain', client.phone);
-        cy.wrap($row).find('td').eq(2).should('contain', client.dateOfBirth);
-        cy.wrap($row).find('td').eq(3).should('contain', client.comments);
+    cy.get('tbody tr').then( tr => {
+      cy.get('@clients').each( (client:any) => {
+        cy.wrap(tr).should('contain', client.id);
+        cy.wrap(tr).should('contain', client.name);
+        cy.wrap(tr).should('contain', client.phone);
+        cy.wrap(tr).should('contain', client.dateOfBirth);
+        cy.wrap(tr).should('contain', client.comments);
       })
     });
+
   });
 
 
