@@ -17,7 +17,7 @@
             <a ngbDropdownItem  (click)="$event.preventDefault()" routerLink="professional">Profissional</a>
             <a ngbDropdownItem  (click)="$event.preventDefault()" routerLink="appointment-type">Tipo Atendimento</a>
             <hr class="dropdown-divider">
-            <a ngbDropdownItem  (click)="$event.preventDefault()" routerLink="clients-table">Cliente</a>
+            <a ngbDropdownItem  (click)="$event.preventDefault()" id="navItemCliente" routerLink="clients-table">Cliente</a>
             <hr class="dropdown-divider">
             <a ngbDropdownItem  (click)="$event.preventDefault()"routerLink="user">Usuário</a>
           </div>
@@ -27,7 +27,7 @@
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownAgendamento" role="button">Agendamentos</a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdownAgendamento" class="dropdown-menu dropdown-menu-start">
             <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="today-appointments">Hoje</a>
-            <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="create-appointment">Agendar</a>
+            <a ngbDropdownItem (click)="$event.preventDefault()" id="navItemAgendar" routerLink="create-appointment">Agendar</a>
             <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="cancel-appointment">Cancelar</a>
             <hr class="dropdown-divider">
             <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="client-history">Histórico do Cliente</a>

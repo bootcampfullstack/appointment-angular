@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ClientService } from 'src/app/core/services/client.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
@@ -19,8 +19,9 @@ export class ClientFormPageComponent implements OnInit{
   constructor(private formBuilder: FormBuilder,
               private clientService: ClientService,
               private location: Location,
-              private router: ActivatedRoute,
-              private toastService: ToastService
+              private activedRouter: ActivatedRoute,
+              private toastService: ToastService,
+              private router: Router
               ) {
     this.clientForm = this.formBuilder.group({
       id: [''],
@@ -32,7 +33,7 @@ export class ClientFormPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-     this.router.paramMap.subscribe( params => {
+     this.activedRouter.paramMap.subscribe( params => {
         let clientId = Number(params.get("id") ?? "0");
 
         if(clientId){
@@ -56,7 +57,7 @@ export class ClientFormPageComponent implements OnInit{
           {
             next: () => {
               this.toastService.show("Cliente atualizado com sucesso!",{classname: "bg-success text-light"});
-              this.location.back();
+              this.router.navigate(['/clients-table']);
             },
             error: () => this.toastService.show("Erro ao salvar o cliente!",{classname: "bg-danger text-light"})
           }
@@ -67,18 +68,17 @@ export class ClientFormPageComponent implements OnInit{
           {
             next: () => {
               this.toastService.show("Cliente salvo com sucesso!",{classname: "bg-success text-light"});
-              this.location.back();
+              this.router.navigate(['/clients-table']);;
             },
             error: () => this.toastService.show("Erro ao criar o cliente!",{classname: "bg-danger text-light"})
           }
         );
       }
-
     }
   }
 
   cancel(){
-    this.location.back();
+    this.router.navigate(['/clients-table']);
   }
 
   get cfName() {return this.clientForm.get("name")}
