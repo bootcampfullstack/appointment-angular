@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl : "http://52.207.236.238:8080"
+  baseUrl : "http://agenda-lb-2010714845.us-east-1.elb.amazonaws.com"
 };
